@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//hello world
 Route::get('/home',[PagesController::class,'index'])->name('home');
+
+//show users
+Route::get('/users',[UserController::class,'index'])->name('users.list');
