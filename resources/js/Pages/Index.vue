@@ -1,0 +1,53 @@
+<template>
+    <div class="mt-5">
+        <!-- flash message -->
+        <div v-if="$page.props.flash.message" class="alert alert-success" role="alert">
+            {{ $page.props.flash.message }}
+        </div>
+        <!-- flash message -->
+        <div class="card border-0 rounded shadow-sm">
+            <div class="card-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No.</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="(user, index) in users" :key="user.id">
+                            <td>{{ index + 1 }}</td>
+                            <td>{{ user.name }}</td>
+                            <td>{{ user.email }}</td>
+                            <td class="text-center"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script>
+
+    //import Link dari inertia
+    import { Link } from '@inertiajs/inertia-vue3';
+
+    export default {
+
+        //register Link di component
+        components: {
+            Link
+        },
+
+        //props
+        props: {
+            users: Array // <- nama props yang dibuat di controller saat parsing data
+        }
+    }
+</script>
+
+<style>
+
+</style>
