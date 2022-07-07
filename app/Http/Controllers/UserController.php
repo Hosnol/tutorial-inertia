@@ -15,6 +15,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //mengambil data user dari database
         $users = User::all();
 
         return Inertia::render('Index', [
@@ -30,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Create');
     }
 
     /**
@@ -41,7 +42,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //validasi data
+        $request -> validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        //simpan data user ke database
+        $post = User::create([
+            'name' => $request -> name,
+            'email' => $request -> email,
+            'password' => bcrypt($request -> password),
+        ]);
+
+        //redirect ke halaman users
+        if($post){
+            return redirect() -> route('users.index') -> with('success', 'Data berhasil ditambahkan');
+        }else{
+            return redirect() -> route('users.create') -> with('error', 'Data gagal ditambahkan');
+        }
     }
 
     /**
@@ -61,9 +81,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $users)
     {
-        //
+        return Inertia::render('Edit', [
+            'user' => $users,
+        ]);
     }
 
     /**
@@ -73,9 +95,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $users)
     {
-        //
+        //validasi data
+        $request -> validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:8',
+        ]);
+
+        //update data user ke database
+        $users->update([
+            'name' => $request -> name,
+            'email' => $request -> email,
+            'password' => bcrypt($request -> password),
+        ]);
+
+        //redirect ke halaman users
+        if($users){
+            return redirect() -> route('users.index') -> with('success', 'Data berhasil diubah');
+        }else{
+            return redirect() -> route('users.edit') -> with ('error', 'Data gagal diubah');
+        }
     }
 
     /**
@@ -86,6 +127,16 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //mencari data user berdasarkan id
+        $users = User::findOrfail($id);
+
+        $users->delete();
+
+        //redirect ke halaman users
+        if($users){
+            return redirect() -> route('users.index') -> with('success', 'Data berhasil dihapus');
+        }else{
+            return redirect() -> route('users.index') -> with ('error', 'Data gagal dihapus!!');
+        }
     }
 }

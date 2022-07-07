@@ -22,5 +22,15 @@ Route::get('/', function () {
 //hello world
 Route::get('/home',[PagesController::class,'index'])->name('home');
 
-//show users
-Route::get('/users',[UserController::class,'index'])->name('users.list');
+//Group users controller
+Route::controller(UserController::class)->group(function(){
+    Route::get('/users','index')->name('users.index');
+    //create user
+    Route::get('/users/create','create')->name('users.create');
+    //store user
+    Route::post('/users','store')->name('users.store');
+    //edit users
+    Route::get('/users/{user}/edit','edit')->name('users.edit');
+    //update users
+    Route::put('/users/{user}','update')->name('users.update');
+});
