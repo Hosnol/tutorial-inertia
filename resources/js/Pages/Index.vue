@@ -5,6 +5,9 @@
             {{ $page.props.flash.message }}
         </div>
         <!-- flash message -->
+        <div class="mb-3">
+            <inertia-link href="/users/create" class="btn btn-md btn-primary">TAMBAH DATA</inertia-link>
+        </div>
         <div class="card border-0 rounded shadow-sm">
             <div class="card-body">
                 <table class="table">
@@ -13,6 +16,7 @@
                             <th scope="col">No.</th>
                             <th scope="col">Nama</th>
                             <th scope="col">Email</th>
+                            <th scope="col">Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,24 +34,26 @@
 </template>
 
 <script>
+import LayoutApp from '../Layouts/App.vue'
 
-    //import Link dari inertia
-    import { Link } from '@inertiajs/inertia-vue3';
+//import Link dari inertia
+import { Link } from '@inertiajs/inertia-vue3';
 
-    export default {
+export default {
+    //layout
+    layout: LayoutApp,
 
-        //register Link di component
-        components: {
-            Link
-        },
+    //register Link di component
+    components: {
+        Link
+    },
 
-        //props
-        props: {
-            users: Array // <- nama props yang dibuat di controller saat parsing data
-        }
+    //props
+    props: {
+        users: Array // <- nama props yang dibuat di controller saat parsing data
     }
+}
 </script>
 
 <style>
-
 </style>
