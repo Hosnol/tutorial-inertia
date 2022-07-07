@@ -15,16 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //hello world
 Route::get('/home',[PagesController::class,'index'])->name('home');
 
 //Group users controller
 Route::controller(UserController::class)->group(function(){
-    Route::get('/users','index')->name('users.index');
+    Route::get('/','index')->name('users.index');
     //create user
     Route::get('/users/create','create')->name('users.create');
     //store user

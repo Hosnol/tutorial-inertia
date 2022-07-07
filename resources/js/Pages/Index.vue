@@ -1,12 +1,12 @@
 <template>
     <div class="mt-5">
         <!-- flash message -->
-        <div v-if="$page.props.flash.message" class="alert alert-success" role="alert">
+        <div v-if="$page.props.flash.message" class="alert">
             {{ $page.props.flash.message }}
         </div>
         <!-- flash message -->
         <div class="mb-3">
-            <inertia-link href="/users/create" class="btn btn-md btn-primary">TAMBAH DATA</inertia-link>
+            <Link href="/users/create" class="btn btn-md btn-primary">TAMBAH DATA</Link>
         </div>
         <div class="card border-0 rounded shadow-sm">
             <div class="card-body">

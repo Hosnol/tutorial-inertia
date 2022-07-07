@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class UserController extends Controller
@@ -58,9 +59,9 @@ class UserController extends Controller
 
         //redirect ke halaman users
         if($post){
-            return redirect() -> route('users.index') -> with('success', 'Data berhasil ditambahkan');
+            return Redirect::route('users.index') -> with('success', 'Data berhasil ditambahkan');
         }else{
-            return redirect() -> route('users.create') -> with('error', 'Data gagal ditambahkan');
+            return Redirect::route('users.create') -> with('error', 'Data gagal ditambahkan');
         }
     }
 

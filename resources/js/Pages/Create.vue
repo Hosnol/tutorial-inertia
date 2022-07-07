@@ -9,21 +9,21 @@
                     <div class="mb-3">
                         <label class="form-label">NAME</label>
                         <input type="text" class="form-control" v-model="user.name" placeholder="Masukkan Nama">
-                        <div v-if="errors.title" class="mt-2 alert alert-danger">
+                        <div v-if="errors.name" class="mt-2 alert alert-danger">
                             {{ errors.name }}
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">EMAIL</label>
-                        <textarea class="form-control" rows="5" v-model="user.email" placeholder="Masukkan email"></textarea>
-                        <div v-if="errors.content" class="mt-2 alert alert-danger">
+                        <input class="form-control" v-model="user.email" placeholder="Masukkan email">
+                        <div v-if="errors.email" class="mt-2 alert alert-danger">
                             {{ errors.email }}
                         </div>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">EMAIL</label>
-                        <textarea class="form-control" rows="5" v-model="user.password" placeholder="Masukkan Password"></textarea>
-                        <div v-if="errors.content" class="mt-2 alert alert-danger">
+                        <label class="form-label">PASSWORD</label>
+                        <input class="form-control" v-model="user.password" placeholder="Masukkan Password">
+                        <div v-if="errors.password" class="mt-2 alert alert-danger">
                             {{ errors.password }}
                         </div>
                     </div>
@@ -59,7 +59,7 @@
         //define Composition Api
         setup() {
 
-            //state posts
+            //state user
             const user = reactive({
                 name: '',
                 email: '',
@@ -75,7 +75,7 @@
                 let password = user.password
 
                 //send data
-                Inertia.user('/users', {
+                Inertia.post('/users', {
                     name: name,
                     email: email,
                     password: password
