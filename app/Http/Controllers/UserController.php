@@ -82,10 +82,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $users)
+    public function edit(User $user)
     {
         return Inertia::render('Edit', [
-            'user' => $users,
+            'user' => $user,
         ]);
     }
 
@@ -96,24 +96,24 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $users)
+    public function update(Request $request, User $user)
     {
         //validasi data
         $request -> validate([
             'name' => 'required',
-            'email' => 'required|email|unique:users',
+            'email' => 'required|email',
             'password' => 'required|min:8',
         ]);
 
         //update data user ke database
-        $users->update([
+        $user->update([
             'name' => $request -> name,
             'email' => $request -> email,
             'password' => bcrypt($request -> password),
         ]);
 
         //redirect ke halaman users
-        if($users){
+        if($user){
             return redirect() -> route('users.index') -> with('success', 'Data berhasil diubah');
         }else{
             return redirect() -> route('users.edit') -> with ('error', 'Data gagal diubah');
