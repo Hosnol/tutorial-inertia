@@ -24,7 +24,9 @@
                             <td>{{ index + 1 }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
-                            <td class="text-center"></td>
+                            <td class="text-center">
+                                <Link :href="`/users/${user.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
