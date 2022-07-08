@@ -20,17 +20,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="(user, index) in users" :key="user.id">
+                        <tr v-for="(user, index) in users.data" :key="user.id">
                             <td>{{ index + 1 }}</td>
                             <td>{{ user.name }}</td>
                             <td>{{ user.email }}</td>
-                            <td class="text-center">
+                            <td>
                                 <Link :href="`/users/${user.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
-                                <button @click.prevent="deleteUser(`${user.id}`)" class="btn btn-sm btn-danger">DELETE</button>
+                                <button @click="deleteUser(`${user.id}`)" class="btn btn-sm btn-danger">DELETE</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <Pagination class="mt-6" :links="users.links" />
             </div>
         </div>
     </div>
@@ -38,6 +39,7 @@
 
 <script>
 import LayoutApp from '../Layouts/App.vue'
+import Pagination from '.././Pages/components/pagination.vue'
 
 //import Link dari inertia
 import { Link } from '@inertiajs/inertia-vue3';
@@ -51,18 +53,21 @@ export default {
 
     //register Link di component
     components: {
-        Link
+        Link,
+        Pagination
     },
 
     //props
     props: {
-        users: Array // <- nama props yang dibuat di controller saat parsing data
+        users: Object, // <- nama props yang dibuat di controller saat parsing data
     },
 
     //defenisi Composition Api
     setup(){
         function deleteUser(id) {
-            Inertia.delete(`/users/${id}`)
+            if(confirm('Apakah anda yakin?')){
+                Inertia.delete(`/users/${id}`)
+            }
         }
         return{
             deleteUser
