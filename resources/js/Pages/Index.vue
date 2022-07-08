@@ -26,6 +26,7 @@
                             <td>{{ user.email }}</td>
                             <td class="text-center">
                                 <Link :href="`/users/${user.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
+                                <button @click.prevent="deleteUser(`${user.id}`)" class="btn btn-sm btn-danger">DELETE</button>
                             </td>
                         </tr>
                     </tbody>
@@ -41,6 +42,9 @@ import LayoutApp from '../Layouts/App.vue'
 //import Link dari inertia
 import { Link } from '@inertiajs/inertia-vue3';
 
+import { Inertia } from '@inertiajs/inertia'
+
+
 export default {
     //layout
     layout: LayoutApp,
@@ -53,6 +57,16 @@ export default {
     //props
     props: {
         users: Array // <- nama props yang dibuat di controller saat parsing data
+    },
+
+    //defenisi Composition Api
+    setup(){
+        function deleteUser(id) {
+            Inertia.delete(`/users/${id}`)
+        }
+        return{
+            deleteUser
+        }
     }
 }
 </script>
