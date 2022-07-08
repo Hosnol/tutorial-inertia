@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         //mengambil data user dari database
-        $users = User::all();
+        $users = User::orderBy('id', 'desc')->paginate(5);
 
         return Inertia::render('Index', [
             'users' => $users,
