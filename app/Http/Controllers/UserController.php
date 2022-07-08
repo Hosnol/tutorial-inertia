@@ -114,9 +114,9 @@ class UserController extends Controller
 
         //redirect ke halaman users
         if($user){
-            return redirect() -> route('users.index') -> with('success', 'Data berhasil diubah');
+            return Redirect::route('users.index') -> with('success', 'Data berhasil diubah');
         }else{
-            return redirect() -> route('users.edit') -> with ('error', 'Data gagal diubah');
+            return Redirect::route('users.edit') -> with ('error', 'Data gagal diubah');
         }
     }
 
@@ -135,9 +135,9 @@ class UserController extends Controller
 
         //redirect ke halaman users
         if($users){
-            return redirect() -> route('users.index') -> with('success', 'Data berhasil dihapus');
+            return Redirect::route('users.index') -> with('success', 'Data berhasil dihapus');
         }else{
-            return redirect() -> route('users.index') -> with ('error', 'Data gagal dihapus!!');
+            return Redirect::route('users.index') -> with ('error', 'Data gagal dihapus!!');
         }
     }
 }
