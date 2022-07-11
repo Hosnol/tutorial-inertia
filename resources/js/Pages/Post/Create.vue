@@ -3,26 +3,35 @@
     <div>
         <div class="card border-0 rounded shadow">
             <div class="card-body">
-                <h4>TAMBAH USER</h4>
+                <h4>TAMBAH POST</h4>
                 <hr>
                 <form @submit.prevent="storeUser">
                     <div class="mb-3">
                         <label class="form-label">Title</label>
-                        <input type="text" class="form-control" v-model="post.title" placeholder="Masukkan Title">
+                        <input type="text" class="form-control" placeholder="Masukkan Title">
                         <div v-if="errors.title" class="mt-2 alert alert-danger">
                             {{ errors.title }}
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Content</label>
-                        <input class="form-control" v-model="post.content" placeholder="Masukkan content">
+                        <div class="form-floating">
+                            <textarea class="form-control" placeholder="Leave a comment here"
+                                id="floatingTextarea"></textarea>
+                            <label for="floatingTextarea">Comments</label>
+                        </div>
                         <div v-if="errors.title" class="mt-2 alert alert-danger">
                             {{ errors.title }}
                         </div>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Penulis</label>
-                        <input class="form-control" v-model="post.penulis" placeholder="Masukkan penulis">
+                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                            <option selected>Open this select menu</option>
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                        </select>
                         <div v-if="errors.penulis" class="mt-2 alert alert-danger">
                             {{ errors.penulis }}
                         </div>
@@ -40,54 +49,54 @@
 </template>
 
 <script>
-    //import layout
-    import LayoutApp from '../../Shared/App.vue'
+//import layout
+import LayoutApp from '../../Shared/App.vue'
 
-    import { reactive } from 'vue'
-    import { Inertia } from '@inertiajs/inertia'
+import { reactive } from 'vue'
+import { Inertia } from '@inertiajs/inertia'
 
-    export default {
+export default {
 
-        //layout
-        layout: LayoutApp,
+    //layout
+    layout: LayoutApp,
 
-        //props
-        // props: {
-        //     errors: Object
-        // },
+    //props
+    props: {
+        errors: Object
+    },
 
-        // //define Composition Api
-        // setup() {
+    // //define Composition Api
+    // setup() {
 
-        //     //state user
-        //     const user = reactive({
-        //         title: '',
-        //         content: '',
-        //         penulis: ''
-        //     })
+    //     //state user
+    //     const user = reactive({
+    //         title: '',
+    //         content: '',
+    //         penulis: ''
+    //     })
 
-            // //function storeUser
-            // function storePost() {
+    // //function storeUser
+    // function storePost() {
 
-            //     //define variable
-            //     let title   = post.title
-            //     let content = post.content
-            //     let penulis = post.penulis
+    //     //define variable
+    //     let title   = post.title
+    //     let content = post.content
+    //     let penulis = post.penulis
 
-            //     //send data
-            //     Inertia.post('/posts', {
-            //         title: title,
-            //         content: content,
-            //         penulis: penulis
-            //     })
+    //     //send data
+    //     Inertia.post('/posts', {
+    //         title: title,
+    //         content: content,
+    //         penulis: penulis
+    //     })
 
-            // }
+    // }
 
-            // return {
-            //     user,
-            //     storeUser
-            // }
+    // return {
+    //     user,
+    //     storeUser
+    // }
 
-        }
+}
 
 </script>

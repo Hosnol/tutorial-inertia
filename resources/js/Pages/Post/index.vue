@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                             <tr v-for="(post, index) in post.data" :key="post.id">
-                                <td>{{ index + 1 }}</td>
+                                <td>{{ Index + 1 }}</td>
                                 <td>{{ post.title }}</td>
                                 <td>{{ post.content }}</td>
                                 <td>{{ post.author.name }}</td>

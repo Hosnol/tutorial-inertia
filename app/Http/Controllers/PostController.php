@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::with('author')->paginate(5);
-        return Inertia::render('Post/index', [
+        return Inertia::render('Post/Index', [
             'post' => $post,
         ]);
     }
@@ -27,9 +27,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function Create()
     {
-        return Inertia::render('Post/create');
+        return Inertia::render('Post/Create');
     }
 
     /**
