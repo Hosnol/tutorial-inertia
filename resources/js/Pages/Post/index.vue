@@ -6,7 +6,7 @@
         </div>
         <!-- flash message -->
         <div class="mb-3">
-            <Link href="/post/create" class="btn btn-md btn-primary">TAMBAH DATA</Link>
+            <Link href="/posts/create" class="btn btn-md btn-primary">TAMBAH DATA</Link>
         </div>
         <div class="card border-0 rounded shadow-sm">
             <div class="card-body">
