@@ -9,7 +9,7 @@
               <Link class="nav-link" href="/">User</Link>
             </li>
             <li class="nav-item">
-              <Link class="nav-link" href="/post">Post</Link>
+              <Link class="nav-link" href="/posts">Post</Link>
             </li>
             <li class="nav-item">
               <Link class="nav-link" href="/comment">Coment</Link>
@@ -29,8 +29,6 @@
 </template>
 
 <script>
-
-
 
   //import Link dari inertia
   import { Link } from '@inertiajs/inertia-vue3';

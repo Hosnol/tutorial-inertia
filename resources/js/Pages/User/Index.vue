@@ -38,8 +38,8 @@
 </template>
 
 <script>
-import LayoutApp from '../Layouts/App.vue'
-import Pagination from '.././Pages/components/pagination.vue'
+import LayoutApp from '../../Shared/App.vue'
+import Pagination from '../../Shared/pagination.vue'
 
 //import Link dari inertia
 import { Link } from '@inertiajs/inertia-vue3';

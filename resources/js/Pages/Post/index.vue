@@ -10,38 +10,44 @@
         </div>
         <div class="card border-0 rounded shadow-sm">
             <div class="card-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Title</th>
-                            <th scope="col">Content</th>
-                            <th scope="col">Penulis</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                         <tr v-for="(post, index) in post.data" :key="post.id">
-                            <td>{{ index + 1 }}</td>
-                            <td>{{ post.title }}</td>
-                            <td>{{ post.content }}</td>
-                            <td>{{ post.penulis }}</td>
-                            <td>{{ post.action }}</td>
-                            <td class="text-center">
-                                <Link :href="`/post/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT</Link>
-                                <button @click.prevent="deletePost(`${post.id}`)" class="btn btn-sm btn-danger">DELETE</button>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No.</th>
+                                <th scope="col">Title</th>
+                                <th scope="col">Content</th>
+                                <th scope="col">Penulis</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(post, index) in post.data" :key="post.id">
+                                <td>{{ index + 1 }}</td>
+                                <td>{{ post.title }}</td>
+                                <td>{{ post.content }}</td>
+                                <td>{{ post.author.name }}</td>
+                                <td>{{ post.action }}</td>
+                                <td>
+                                    <Link :href="`/post/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
+                                    </Link>
+                                    <button @click.prevent="deletePost(`${post.id}`)"
+                                        class="btn btn-sm btn-danger">DELETE</button>
 
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <Pagination class="mt-6" :links="post.links" />
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import LayoutApp from '../Layouts/App.vue'
+import LayoutApp from '../../Shared/App.vue'
+import Pagination from '../../Shared/pagination.vue'
 
 //import Link dari inertia
 import { Link } from '@inertiajs/inertia-vue3';
@@ -55,7 +61,8 @@ export default {
 
     //register Link di component
     components: {
-        Link
+        Link,
+        Pagination
     },
 
     //props
@@ -64,20 +71,17 @@ export default {
     },
 
     //defenisi Composition Api
-    setup(){
+    setup() {
         function deletePost(id) {
-            Inertia.delete(`/post/${id}`)
+            if (confirm('Apakah anda yakin?')) {
+                Inertia.delete(`/post/${id}`)
+            }
         }
-        return{
+        return {
             deletePost
         }
     }
-
-
 }
-
-
-
 </script>
 
 <style>

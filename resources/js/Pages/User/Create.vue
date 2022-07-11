@@ -41,7 +41,7 @@
 
 <script>
     //import layout
-    import LayoutApp from '../Layouts/App.vue'
+    import LayoutApp from '../../Shared/App.vue'
 
     import { reactive } from 'vue'
     import { Inertia } from '@inertiajs/inertia'

@@ -19,7 +19,7 @@ class UserController extends Controller
         //mengambil data user dari database
         $users = User::orderBy('id', 'desc')->paginate(5);
 
-        return Inertia::render('Index', [
+        return Inertia::render('User/Index', [
             'users' => $users,
         ]);
 
@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Create');
+        return Inertia::render('User/Create');
     }
 
     /**
@@ -84,7 +84,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return Inertia::render('Edit', [
+        return Inertia::render('User/Edit', [
             'user' => $user,
         ]);
     }

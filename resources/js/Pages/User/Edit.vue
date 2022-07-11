@@ -39,7 +39,7 @@
 </template>
 <script>
     //import layout
-    import LayoutApp from '../Layouts/App.vue'
+    import LayoutApp from '../../Shared/App.vue'
 
     import { reactive } from 'vue'
     import { Inertia } from '@inertiajs/inertia'
@@ -61,7 +61,7 @@ export default {
             email: props.user.email,
             password: props.user.password
         })
-        
+
         //function updatePost
         function updateUser(){
 
@@ -70,7 +70,7 @@ export default {
             let email = user.email
             let password = user.password
 
-            //send data 
+            //send data
             Inertia.put(`/users/${props.user.id}`, {
                 name:name,
                 email:email,
