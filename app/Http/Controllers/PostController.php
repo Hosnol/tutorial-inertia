@@ -60,9 +60,13 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Post $post)
     {
-        //
+        $post = Post::with('author')->find($post->id);
+        return Inertia::render('Post/Edit', [
+            'post' => $post,
+        ]);
+        
     }
 
     /**

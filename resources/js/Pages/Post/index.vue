@@ -29,7 +29,8 @@
                                 <td>{{ post.author.name }}</td>
                                 <td>{{ post.action }}</td>
                                 <td>
-                                    <Link :href="`/post/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
+                                    <Link :href="`/posts/${post.id}/edit`" class="btn btn-sm btn-primary me-2">EDIT
+                                  
                                     </Link>
                                     <button @click.prevent="deletePost(`${post.id}`)"
                                         class="btn btn-sm btn-danger">DELETE</button>

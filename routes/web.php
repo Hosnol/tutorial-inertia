@@ -36,6 +36,7 @@ Route::controller(UserController::class)->group(function(){
     Route::put('/users/{user}','update')->name('users.update');
     //delete users
     Route::delete('/users/{user}','destroy')->name('users.destroy');
+
 });
 
 
